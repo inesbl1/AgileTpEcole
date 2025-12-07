@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha School - Détail Article</title>
+    <style>
+        :root {
+            --white: #ffffff;
+            --black: #000000;
+            --primecolor: #63b1af;
+            --light: #EFEFEF;
+            --lightgrey: #e9f6f5;
+            --dark: #3A4852;
+            --text: #343a40;
+            --blue: #E8B12D;
+            --lightblue: #98D6D3;
+            --accent: #d45d40;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primecolor) 0%, var(--lightblue) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #e67e63 100%);
+            --gradient-card: linear-gradient(145deg, #faeeeeff 0%, var(--lightgrey) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #faeeeeff ;
+            color: var(--text);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+      /* Header */
+header {
+    background: transparent;
+    color: var(--white);
+    padding: 1.25rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(0px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Classe qui s'ajoute au scroll */
+header.scrolled {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 12px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: var(--blue);
+            color: var(--dark);
+        }
+
+  
+
+       .article-hero {
+    position: relative;
+    height: 40vh;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 0;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+        .hero-background-image {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 1px;
+    height: 150px;
+    object-fit: cover;
+    z-index: 1;
+    border-radius: 8px;
+    opacity: 1;
+}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+
+   
+
+/* Animation d'apparition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.hero-title {
+    font-size: clamp(2rem, 1vw, 2rem);
+    font-weight: 200;
+    line-height: 1.1;
+    color: var(--white);
+    z-index: 3;
+    
+    /* Rectangle avec fond et bordures carrées */
+    background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+    border: 2px solid var(--blue); /* Bordure jaune (#E8B12D) */
+    border-radius: 0; /* Bords carrés */
+    
+   padding: 0.1rem 0.2rem;
+    margin: 0 auto;
+    position: relative;
+    top: 3rem; /* Descend de 1rem */
+    
+    /* Animation simple et élégante */
+    animation: fadeInUp 1s ease-out;
+    
+    /* Typographie moderne */
+    letter-spacing: -0.02em;
+    text-align: center;
+    
+    /* Dimensions */
+    display: inline-block;
+    max-width: 90%;
+    
+    /* Effets d'ombre */
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        padding: 1rem 1.5rem;
+        max-width: 95%;
+    }
+}
+
+/* CORRECTION : Container principal avec taille moyenne */
+.article-detail-container {
+    max-width: 800px; /* Changé de 100px à 800px */
+    margin: 0 auto;
+    padding: 0 2rem 4rem 2rem;
+    border-radius: 30px;
+    position: relative;
+    width: 100%; /* Changé de 50% à 100% */
+}
+
+        /* Navigation détail */
+        .detail-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--lightgrey);
+            max-width: 800px; /* AJOUT */
+            margin-left: auto; /* AJOUT */
+            margin-right: auto; /* AJOUT */
+        }
+
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Centre le contenu horizontalement */
+    gap: 10px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    /* Couleurs */
+    background: linear-gradient(135deg, #63b1af 0%, #98D6D3 100%);
+    color: white;
+    border: 0px solid #ffffffff;
+    border-radius: 12px;
+    padding: 8px 11px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    
+    /* Centrage absolu */
+    position: absolute;
+    left: 48%;
+    transform: translateX(-50%);
+    margin-top: 80px; /* Ajustez selon vos besoins */
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #98D6D3 0%, #63b1af 100%);
+    transform: translateX(-50%) translateY(-2px); /* Maintient le centrage lors du hover */
+}
+       /* Sections de contenu */
+.event-details {
+    background: linear-gradient(145deg, #ffffff 0%, var(--lightgrey) 100%);
+    padding: 2rem;
+    margin: 0rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+    border-radius: 25px;
+    margin-left: 0; /* Changé de 'auto' à '0' */
+    margin-right: auto; /* Garde la marge droite automatique */
+    margin-top: 8px;
+}
+
+        /* Effet de brillance subtil */
+        .event-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.8) 50%, 
+                transparent 100%);
+        }
+
+        .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Réduit de 1.2rem */
+    padding: 1.5rem; /* Réduit de 2rem */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border-radius: 16px; /* Réduit de 20px */
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+        /* Effet de bordure colorée en haut */
+        .detail-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--primecolor) 0%, 
+                var(--lightblue) 50%, 
+                var(--accent) 100%);
+            border-radius: 4px 4px 0 0;
+            opacity: 0.8;
+        }
+
+        /* Effet au survol */
+        .detail-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 8px 25px rgba(99, 177, 175, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-color: rgba(99, 177, 175, 0.3);
+        }
+
+        /* Icône décorative */
+        .detail-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(99, 177, 175, 0.05) 0%, rgba(152, 214, 211, 0.1) 100%);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .detail-label {
+            font-weight: 800;
+            color:  #E8B12D;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            background: linear-gradient(135deg, var(--primecolor), var(--lightblue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+        }
+
+        /* Ajout d'icônes aux labels */
+        .detail-label::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: #2f8c99ff;
+            -webkit-mask: var(--icon) no-repeat center;
+            mask: var(--icon) no-repeat center;
+            opacity: 0.8;
+        }
+/* Icônes personnalisées avec vos images */
+.detail-item:nth-child(1) .detail-label { 
+    --icon: url('images/epingle (2).png'); /* Votre image pour Lieu */
+}
+
+.detail-item:nth-child(2) .detail-label { 
+    --icon: url('images/calendrier.png'); /* Votre image pour Date */
+}
+
+.detail-item:nth-child(3) .detail-label { 
+    --icon: url('images/horloge-murale.png'); /* Votre image pour Heure */
+}
+
+.detail-item:nth-child(4) .detail-label { 
+    --icon: url('images/equipe.png'); /* Votre image pour Participants */
+}
+
+
+
+/* Icône de procédure */
+.procedure-icon {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 8px;
+    filter: brightness(0.9);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .procedure-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+        .detail-value {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.15rem;
+            line-height: 1.4;
+            background: linear-gradient(135deg, var(--dark) 0%, #4a5568 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 4px 0;
+        }
+
+        /* Animation d'entrée */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .detail-item:nth-child(1) { animation-delay: 0.1s; }
+        .detail-item:nth-child(2) { animation-delay: 0.2s; }
+        .detail-item:nth-child(3) { animation-delay: 0.3s; }
+        .detail-item:nth-child(4) { animation-delay: 0.4s; }
+
+        /* CORRECTION : Sections outils et procédure */
+        .tools-section, .procedure-section {
+            background: linear-gradient(145deg, #ffffff 0%, var(--lightgrey) 100%);
+            padding: 3.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                var(--shadow-md),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            max-width: 800px; /* AJOUT */
+            margin-left: auto; /* AJOUT */
+            border-radius: 25px;
+            max-height: 400px;
+            margin-right: auto; /* AJOUT */
+        }
+
+.tools-section .section-title {
+    color: var(--dark);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem; /* RÉDUIT de 2.3rem à 1rem */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--dark) 0%, #4a5568 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 8px 0;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-radius: 25px;
+    margin-bottom: 0; /* SUPPRIMEZ ou réduisez cette marge */
+}
+
+/* CORRECTION : UNE SEULE DÉFINITION POUR L'ICÔNE */
+.tools-section .section-title::before {
+    content: '';
+    width: 32px; /* Corrigé de 132px à 32px */
+    height: 32px; /* Corrigé de 132px à 32px */
+    background: url('images/outils.png') no-repeat center;
+    background-size: contain;
+    flex-shrink: 0;
+}
+
+        .section-title {
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, var(--dark) 0%, #4a5568 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+                        border-radius: 25px;
+
+            padding: 8px 0;
+        }
+
+      
+        .tool-tag {
+            background: linear-gradient(135deg, #333333 0%, #737373ff 100%);            
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 4px 12px rgba(99, 177, 175, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet de brillance sur les tags */
+        .tool-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tool-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(99, 177, 175, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .tool-tag:hover::before {
+            left: 100%;
+        }
+
+     
+/* ===== PROCEDURE STEPS - VERSION CORRIGÉE ===== */
+.procedure-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    padding: 1rem 0.5rem 1rem 1rem; /* Ajout de padding à droite et à gauche */
+    margin: 1rem 0;
+    max-height: 50vh;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    
+    /* Style personnalisé de la scrollbar - DÉPLACÉE VERS LA DROITE */
+    scrollbar-width: thin; /* Pour Firefox */
+    scrollbar-color: var(--lightblue) transparent; /* Pour Firefox */
+    
+    /* Augmentation de la marge droite pour éloigner la scrollbar */
+    padding-right: 25px !important;
+}
+
+/* Style de la scrollbar pour Webkit (Chrome, Safari, Edge) */
+.procedure-steps::-webkit-scrollbar {
+    width: 8px; /* Largeur de la scrollbar */
+    position: absolute;
+    right: 15px; /* Déplace la scrollbar de 15px vers la droite */
+}
+
+.procedure-steps::-webkit-scrollbar-track {
+    background: rgba(99, 177, 175, 0.1);
+    border-radius: 4px;
+    margin: 10px 0;
+    margin-right: 5px; /* Espace supplémentaire à droite */
+}
+
+.procedure-steps::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primecolor), var(--lightblue));
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.procedure-steps::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent), var(--blue));
+}
+
+/* Ligne de timeline - AJUSTÉE POUR TENIR COMPTE DU DÉCALAGE */
+.procedure-steps::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 80px; /* Augmenté de 40px à 45px pour décaler la timeline */
+    width: 3px;
+    background: linear-gradient(180deg, 
+        var(--primecolor) 0%, 
+        var(--lightblue) 30%, 
+        var(--accent) 70%, 
+        transparent 100%);
+    border-radius: 3px;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+/* Ajustement des points sur la timeline */
+.procedure-step::before {
+    content: '';
+    position: absolute;
+    left: 10px; /* Ajusté de 34px à 39px pour correspondre au décalage */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, var(--primecolor), var(--lightblue));
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 0 3px rgba(99, 177, 175, 0.15),
+        0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+/* Effet de brillance */
+.procedure-step::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.12) 50%, 
+        transparent 100%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+/* États interactifs */
+.procedure-step:hover {
+    transform: translateX(6px) scale(1.01);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        0 3px 12px rgba(99, 177, 175, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    border-color: rgba(99, 177, 175, 0.3);
+}
+
+.procedure-step:hover::before {
+    transform: translateY(-50%) scale(1.15);
+    background: linear-gradient(135deg, var(--accent), var(--blue));
+    box-shadow: 
+        0 0 0 4px rgba(99, 177, 175, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.procedure-step:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(10%, 10%);
+}
+/* CORRECTION : Contenu de l'étape - STRUCTURE AVEC WRAPPER */
+.step-content-wrapper {
+    flex: 1;
+    margin-left: 45px !important; /* Augmenté de 40px à 45px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    width: calc(100% - 45px); /* Ajusté pour tenir compte du décalage */
+}
+.step-content {
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+    font-size: 1rem;
+    padding: 20px;
+    margin: 0;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
+
+
+/* Délais d'animation pour chaque étape */
+.procedure-step:nth-child(1) { animation-delay: 0.1s; }
+.procedure-step:nth-child(2) { animation-delay: 0.15s; }
+.procedure-step:nth-child(3) { animation-delay: 0.2s; }
+.procedure-step:nth-child(4) { animation-delay: 0.25s; }
+.procedure-step:nth-child(5) { animation-delay: 0.3s; }
+.procedure-step:nth-child(6) { animation-delay: 0.35s; }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes */
+@media (max-width: 768px) {
+    .procedure-steps {
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+    
+    .procedure-step {
+        padding: 1rem 1.25rem;
+        gap: 1rem;
+        min-height: 60px;
+    }
+    
+    .procedure-steps::before {
+        left: 35px;
+    }
+    
+    .procedure-step::before {
+        left: 29px;
+        width: 12px;
+        height: 12px;
+    }
+    
+    .step-content-wrapper {
+        margin-left: 0.25rem;
+    }
+    
+    .step-content {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+    .procedure-step {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1rem;
+        min-height: 55px;
+    }
+    
+    .step-content-wrapper {
+        margin-left: 0.25rem;
+    }
+    
+    .step-content {
+        font-size: 0.9rem;
+    }
+    
+    .procedure-steps::before {
+        left: 28px;
+    }
+    
+    .procedure-step::before {
+        left: 22px;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* ===== ÉTATS SPÉCIAUX ===== */
+
+/* Première étape */
+.procedure-step:first-child {
+    margin-top: 0.5rem;
+}
+
+/* Dernière étape */
+.procedure-step:last-child {
+    margin-bottom: 0.5rem;
+}
+
+/* Étape active (pour usage futur) */
+.procedure-step.active {
+    border-color: var(--accent);
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(248, 250, 252, 0.98) 50%,
+        rgba(255, 255, 255, 0.96) 100%);
+}
+
+.procedure-step.active::before {
+    background: linear-gradient(135deg, var(--accent), #e67e63);
+    box-shadow: 
+        0 0 0 4px rgba(212, 93, 64, 0.3),
+        0 4px 12px rgba(212, 93, 64, 0.2);
+}
+
+
+        /* CORRECTION : Contenu de l'article */
+        .article-detail-content {
+            line-height: 1.8;
+            font-size: 1.15rem;
+            color: var(--text);
+            margin: 3rem 0;
+            max-width: 800px; /* AJOUT */
+            margin-left: auto; /* AJOUT */
+            margin-right: auto; /* AJOUT */
+        }
+
+        .article-detail-content p {
+            margin-bottom: 2rem;
+            text-align: left;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.6) 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 6px solid var(--lightblue);
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet de surbrillance au survol des paragraphes */
+        .article-detail-content p:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-left-color: var(--primecolor);
+        }
+
+        /* Animation d'entrée */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .procedure-step, .tool-tag {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        /* CORRECTION : Boutons d'action */
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px; /* AJOUT */
+            margin-left: auto; /* AJOUT */
+            margin-right: auto; /* AJOUT */
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primecolor) 0%, var(--lightblue) 100%);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            border-color: var(--primecolor);
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primecolor) 0%, var(--lightblue) 100%);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* CORRECTION : Footer de l'article */
+        .article-footer {
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--lightgrey);
+            max-width: 800px; /* AJOUT */
+            margin-left: auto; /* AJOUT */
+            margin-right: auto; /* AJOUT */
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--blue);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Container pour l'image personnelle dans le contenu */
+        .article-personal-image-container {
+            width: 100%;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px; /* AJOUT */
+        }
+
+        .article-personal-image {
+            width: 40%;
+            height: auto;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .article-hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .event-details,
+            .tools-section,
+            .procedure-section {
+                padding: 2rem;
+            }
+            
+            .detail-nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .article-personal-image-container {
+                padding: 1.5rem;
+                margin: 0 auto 2rem auto;
+            }
+            
+            .article-personal-image {
+                width: 60%;
+            }
+
+            /* CORRECTION : Responsive pour les éléments limités */
+            .event-details,
+            .tools-section,
+            .procedure-section,
+            .article-detail-content,
+            .action-buttons,
+            .article-footer,
+            .detail-nav,
+            .article-personal-image-container {
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .article-hero {
+                height: 50vh;
+                min-height: 350px;
+            }
+            
+            .event-details {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            
+            .article-personal-image {
+                width: 80%;
+            }
+            
+            .article-personal-image-container {
+                padding: 1rem;
+            }
+        }
+
+.article-personal-image-container {
+    width: 300px;
+    float: left;
+    text-align: left;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.article-personal-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Nettoyage du float */
+#detail-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Conteneur des boutons d'action */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Style de base pour les deux boutons */
+.btn-download, .btn-email {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 200px;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bouton Télécharger */
+.btn-download {
+    background:  #63b1af;
+    color: white;
+    border: 2px solid ;
+}
+
+/* Bouton Email */
+.btn-email {
+    background: #63b1af;
+    color: white;
+    border: 2px solid ;
+}
+
+/* Effet de survol */
+.btn-download:hover, .btn-email:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    gap: 12px;
+}
+
+/* Effet au clic */
+.btn-download:active, .btn-email:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation de l'icône */
+.btn-download span, .btn-email span {
+    font-size: 1.3em;
+    transition: transform 0.3s ease;
+}
+
+.btn-download:hover span, .btn-email:hover span {
+    transform: scale(1.2);
+}
+
+/* Effet de brillance au survol */
+.btn-download::before, .btn-email::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-download:hover::before, .btn-email:hover::before {
+    left: 100%;
+}
+
+/* États désactivés */
+.btn-download:disabled, .btn-email:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-download:disabled:hover, .btn-email:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+    
+    .btn-download, .btn-email {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-download, .btn-email {
+        min-width: auto;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-download span, .btn-email span {
+        font-size: 1.1em;
+    }
+}
+
+/* Responsive pour mobiles */
+@media (max-width: 768px) {
+    .article-personal-image-container {
+        max-width: 100%;
+        margin: 0 auto 1.5rem auto;
+        border-radius: 8px;
+    }
+    
+    .article-personal-image {
+        max-height: 300px;
+    }
+}
+
+/* Version alternative avec décalage plus prononcé */
+@media (min-width: 768px) {
+    .procedure-steps {
+        padding-right: 30px !important; /* Plus de padding à droite sur grand écran */
+    }
+    
+    .procedure-steps::-webkit-scrollbar {
+        right: 20px; /* Décalage encore plus grand sur grand écran */
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Page de détail d'article -->
+    <div id="article-detail-page">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <span class="logo-icon">🏫</span>
+                        Alpha<span>School</span>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#" id="home-link">🏠 Accueil</a></li>
+                            <li><a href="#" id="articles-link-detail">📚 Actualités</a></li>
+                            <li><a href="#">🎉 Événements</a></li>
+                            <li><a href="#">📞 Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+           <!-- Hero Section avec image d'arrière-plan -->
+<div class="article-hero" id="article-hero">
+    <div class="hero-content">
+        <h1 class="hero-title" id="hero-title">
+            <!-- Titre dynamique -->
+        </h1>
+    </div>
+</div>
+            <!-- Contenu détaillé de l'article -->
+            <div class="article-detail-container">
+                <!-- Navigation -->
+                <div class="detail-nav">
+                    <button class="nav-btn" id="back-button">
+                        <span></span>← Back to articles
+                    </button>
+                </div>
+
+                <!-- Détails de l'événement -->
+                <div class="event-details" id="event-details">
+                    <!-- Détails dynamiques -->
+                </div>
+
+                <!-- Outils nécessaires -->
+                <div class="tools-section" id="tools-section">
+                    <!-- Outils dynamiques -->
+                </div>
+
+                <!-- Procédure détaillée -->
+                <div class="procedure-section" id="procedure-section">
+                    <!-- Procédure dynamique -->
+                </div>
+
+                <!-- Contenu de l'article -->
+                <div class="article-detail-content" id="detail-content">
+                    <!-- Contenu dynamique -->
+                </div>
+
+               <!-- Boutons d'action -->
+<div class="action-buttons">
+    <button onclick="downloadArticle()" class="btn-download">
+        <span style="font-size: 1.2em;">📥</span> Download
+    </button>
+    <button onclick="shareByEmail()" class="btn-email">
+        <span style="font-size: 1.2em;">📧</span> Send by email
+    </button>
+</div>
+
+                <!-- Footer de l'article -->
+                <div class="article-footer"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">Alpha<span>School</span></div>
+                    <div>École primaire et collège - Enfants de 6 à 15 ans</div>
+                    <div>📧 contact@alphaschool.edu • 📞 01 23 45 67 89</div>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Alpha School. Tous droits réservés.
+                </div>
+            </div>
+        </footer>
+    </div>
+<script>
+    // Variables globales
+    let articlesData = null;
+    let currentArticleId = null;
+    const STORAGE_KEY = 'alpha_school_articles';
+
+    // GESTION DU LOCAL STORAGE
+    // ========================
+
+    // Charger les données depuis le localStorage
+    function loadFromLocalStorage() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                const data = JSON.parse(stored);
+                // Normaliser la structure
+                return Array.isArray(data) ? data : (data.articles || []);
+            }
+        } catch (error) {
+            console.error('Erreur de lecture du localStorage:', error);
+        }
+        return [];
+    }
+
+    // Vérifier si un article existe dans le localStorage
+    function findArticleInStorage(articleId) {
+        const articles = loadFromLocalStorage();
+        return articles.find(article => article.id == articleId);
+    }
+
+    // Charger les données avec priorité au localStorage
+    async function loadArticlesData() {
+        try {
+            // 1. Essayer le localStorage d'abord (plus rapide)
+            const localArticles = loadFromLocalStorage();
+            
+            if (localArticles.length > 0) {
+                console.log(`📂 Chargé ${localArticles.length} articles du localStorage`);
+                return { 
+                    articles: localArticles,
+                    fromCache: true 
+                };
+            }
+            
+            // 2. Fallback: charger depuis le fichier JSON
+            console.log('🔄 Aucun article en cache, chargement depuis article.json...');
+            const response = await fetch('article.json');
+            
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP ${response.status}`);
+            }
+            
+            const fileData = await response.json();
+            let articles = [];
+            
+            // Normaliser la structure
+            if (Array.isArray(fileData)) {
+                articles = fileData;
+            } else if (fileData.articles && Array.isArray(fileData.articles)) {
+                articles = fileData.articles;
+            } else {
+                throw new Error('Format JSON invalide dans article.json');
+            }
+            
+            // Assurer les IDs
+            articles = articles.map((article, index) => ({
+                id: article.id || Date.now() + index,
+                ...article
+            }));
+            
+            // Sauvegarder dans le localStorage pour la prochaine fois
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(articles));
+                console.log(`💾 ${articles.length} articles sauvegardés dans le localStorage`);
+            } catch (storageError) {
+                console.warn('⚠️ Impossible de sauvegarder dans le localStorage:', storageError);
+            }
+            
+            return { 
+                articles: articles,
+                fromCache: false 
+            };
+            
+        } catch (error) {
+            console.error('❌ Erreur de chargement des données:', error);
+            
+            // Montrer un message à l'utilisateur
+            showErrorMessage(`
+                <h3>Impossible de charger les articles</h3>
+                <p>${error.message}</p>
+                <button onclick="retryLoad()" style="margin-top: 10px; padding: 10px 20px; background: var(--primecolor); color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Réessayer
+                </button>
+            `);
+            
+            return { 
+                articles: [],
+                fromCache: false,
+                error: error.message 
+            };
+        }
+    }
+
+    // Fonction pour réessayer le chargement
+    function retryLoad() {
+        location.reload();
+    }
+
+    // Afficher un message d'erreur
+    function showErrorMessage(message) {
+        const heroSection = document.getElementById('article-hero');
+        if (heroSection) {
+            heroSection.innerHTML = `
+                <div class="hero-content" style="text-align: center;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    // METADONNES DE L'ARTICLE DANS LOCAL STORAGE
+    // ==========================================
+
+    // Suivre la lecture des articles
+    function trackArticleView(articleId) {
+        try {
+            const viewKey = 'alpha_school_article_views';
+            let views = JSON.parse(localStorage.getItem(viewKey) || '{}');
+            
+            views[articleId] = {
+                lastViewed: new Date().toISOString(),
+                count: (views[articleId]?.count || 0) + 1
+            };
+            
+            localStorage.setItem(viewKey, JSON.stringify(views));
+            
+            // Mettre à jour le timestamp de dernière lecture
+            const timestampKey = `article_${articleId}_last_view`;
+            localStorage.setItem(timestampKey, new Date().toISOString());
+            
+        } catch (error) {
+            console.warn('⚠️ Impossible de tracker la vue:', error);
+        }
+    }
+
+
+    // Télécharger les détails de l'article
+    function downloadArticle() {
+        try {
+            const articleTitle = document.getElementById('hero-title').textContent;
+            const articleContent = document.getElementById('detail-content').innerText;
+            
+            // Récupérer les données de l'article depuis le localStorage
+            const article = findArticleInStorage(currentArticleId);
+            
+            let content = `
+${articleTitle}
+${'='.repeat(articleTitle.length)}
+
+📋 DESCRIPTION:
+${articleContent}
+
+`;
+
+            // Ajouter les détails si disponibles
+            if (article) {
+                content += `
+📅 INFORMATIONS:
+• Catégorie: ${article.category}
+• Date de publication: ${article.date}
+• Date de l'événement: ${article.eventDate || 'Non spécifiée'}
+• Heure: ${article.eventTime || 'Non spécifiée'}
+• Lieu: ${article.location || 'Non spécifié'}
+• Groupe d'âge: ${article.ageGroup || 'Tous âges'}
+• Auteur: ${article.author || 'Alpha School'}
+`;
+            }
+
+            content += `
+---
+📥 Téléchargé depuis Alpha School
+📅 ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}
+`;
+
+            // Créer et télécharger le fichier
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${articleTitle.replace(/[^\w\s]/gi, '').replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Enregistrer le téléchargement dans le localStorage
+            trackDownload(currentArticleId);
+            
+        } catch (error) {
+            console.error('❌ Erreur lors du téléchargement:', error);
+            alert('Impossible de télécharger l\'article. Veuillez réessayer.');
+        }
+    }
+
+    // Suivre les téléchargements
+    function trackDownload(articleId) {
+        try {
+            const downloadsKey = 'alpha_school_downloads';
+            let downloads = JSON.parse(localStorage.getItem(downloadsKey) || '{}');
+            
+            downloads[articleId] = (downloads[articleId] || 0) + 1;
+            localStorage.setItem(downloadsKey, JSON.stringify(downloads));
+            
+            console.log(`📥 Article ${articleId} téléchargé ${downloads[articleId]} fois`);
+        } catch (error) {
+            console.warn('⚠️ Impossible de tracker le téléchargement:', error);
+        }
+    }
+
+    // Envoyer par email
+    function shareByEmail() {
+        try {
+            const articleTitle = document.getElementById('hero-title').textContent;
+            const articleExcerpt = document.getElementById('detail-content').innerText.substring(0, 300) + '...';
+            const article = findArticleInStorage(currentArticleId);
+            
+            const subject = `Article Alpha School: ${articleTitle}`;
+            const body = `
+Bonjour,
+
+Je vous partage un article intéressant d'Alpha School :
+
+"${articleTitle}"
+
+${articleExcerpt}
+
+Catégorie: ${article?.category || 'Non spécifiée'}
+Date: ${article?.eventDate || article?.date || 'Non spécifiée'}
+
+Pour lire l'article complet, visitez notre site ou application.
+
+Cordialement,
+Alpha School
+`.trim();
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            // Enregistrer le partage
+            trackShare(currentArticleId);
+            
+        } catch (error) {
+            console.error('❌ Erreur lors du partage:', error);
+            alert('Impossible d\'ouvrir le client email. Veuillez copier le texte manuellement.');
+        }
+    }
+
+    // Suivre les partages
+    function trackShare(articleId) {
+        try {
+            const sharesKey = 'alpha_school_shares';
+            let shares = JSON.parse(localStorage.getItem(sharesKey) || '{}');
+            
+            shares[articleId] = (shares[articleId] || 0) + 1;
+            localStorage.setItem(sharesKey, JSON.stringify(shares));
+        } catch (error) {
+            console.warn('⚠️ Impossible de tracker le partage:', error);
+        }
+    }
+
+    // Charger un article par ID
+    async function loadArticleById(articleId) {
+        // Vérifier d'abord dans le localStorage
+        const cachedArticle = findArticleInStorage(articleId);
+        
+        if (cachedArticle) {
+            console.log(`📖 Article ${articleId} chargé depuis le cache`);
+            loadArticleDetail(cachedArticle);
+            currentArticleId = articleId;
+            trackArticleView(articleId);
+            return;
+        }
+        
+        // Si pas en cache, charger depuis le fichier
+        if (!articlesData) {
+            const result = await loadArticlesData();
+            articlesData = result.articles;
+        }
+        
+        if (articlesData) {
+            const article = articlesData.find(a => a.id == articleId);
+            if (article) {
+                loadArticleDetail(article);
+                currentArticleId = articleId;
+                trackArticleView(articleId);
+            } else {
+                showErrorMessage(`
+                    <h3>Article non trouvé</h3>
+                    <p>L'article que vous cherchez n'existe pas ou a été déplacé.</p>
+                    <a href="index.html" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: var(--primecolor); color: white; text-decoration: none; border-radius: 8px;">
+                        Retour à l'accueil
+                    </a>
+                `);
+            }
+        }
+    }
+
+    // Charger les détails d'un article
+    function loadArticleDetail(article) {
+        // Mise à jour de la hero section
+        document.getElementById('hero-title').textContent = article.title;
+        
+        // Mise à jour du contenu principal
+        updateDetailContent(article);
+        
+        // Mise à jour des sections
+        updateEventDetails(article);
+        updateToolsSection(article);
+        updateProcedureSection(article);
+        
+        // Mise à jour du titre de la page
+        document.title = `${article.title} - Alpha School`;
+        
+        // Ajouter des boutons de favoris si nécessaire
+        addFavoriteButton(article.id);
+    }
+
+    function updateDetailContent(article) {
+        const detailContent = document.getElementById('detail-content');
+        
+        let contentHTML = '';
+        
+        // Image personnelle de l'article
+        if (article.image && article.image !== "images/.jpg") {
+            contentHTML += `
+                <div class="article-personal-image-container">
+                    <img src="${article.image}" alt="${article.title}" class="article-personal-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23e9f6f5%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%2363b1af%22 font-family=%22Arial%22 font-size=%2220%22 x=%22200%22 y=%22150%22 text-anchor=%22middle%22 dy=%22.3em%22%3EAlpha School%3C/text%3E%3C/svg%3E'">
+                </div>
+            `;
+        }
+        
+        // Contenu existant avec fallback
+        contentHTML += article.content || '<p>Contenu non disponible.</p>';
+        
+        detailContent.innerHTML = contentHTML;
+    }
+
+   
+    
+
+    function updateEventDetails(article) {
+        const eventDetails = document.getElementById('event-details');
+        eventDetails.innerHTML = `
+            <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">${article.location || 'Non spécifiée'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Date</span>
+                <span class="detail-value">${article.eventDate || article.date || 'Non spécifiée'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Hour</span>
+                <span class="detail-value">${article.eventTime || 'Non spécifiée'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Participants</span>
+                <span class="detail-value">${article.ageGroup || 'Tous'}</span>
+            </div>
+        `;
+    }
+
+    function updateToolsSection(article) {
+        const toolsSection = document.getElementById('tools-section');
+        if (article.requiredTools && article.requiredTools.length > 0) {
+            toolsSection.innerHTML = `
+                <h3 class="section-title">Outils nécessaires</h3>
+                <div class="tools-list">
+                    ${article.requiredTools.map(tool => 
+                        `<span class="tool-tag">${tool}</span>`
+                    ).join('')}
+                </div>
+            `;
+            toolsSection.style.display = 'block';
+        } else {
+            toolsSection.style.display = 'none';
+        }
+    }
+
+    function updateProcedureSection(article) {
+        const procedureSection = document.getElementById('procedure-section');
+        if (article.procedure && article.procedure.length > 0) {
+            procedureSection.innerHTML = `
+                <h3 class="section-title">
+                    <img src="images/procedure (2).png" alt="Icône procédure" class="procedure-icon">
+                    Procédure détaillée
+                </h3>
+                <div class="procedure-steps">
+                    ${article.procedure.map((step) => `
+                        <div class="procedure-step">
+                            <div class="step-content-wrapper">
+                                <div class="step-content">${step}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            procedureSection.style.display = 'block';
+        } else {
+            procedureSection.style.display = 'none';
+        }
+    }
+    
+    // Gestion de la navbar transparente au scroll
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Initialisation au chargement de la page
+    document.addEventListener('DOMContentLoaded', async function() {
+        console.log('🚀 Initialisation de la page article...');
+        
+        // Charger les données (priorité au localStorage)
+        const result = await loadArticlesData();
+        articlesData = result.articles;
+        
+        console.log(`✅ ${articlesData.length} articles chargés (${result.fromCache ? 'depuis cache' : 'depuis fichier'})`);
+        
+        // Initialiser la navbar
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        }
+
+        // Bouton retour
+        document.getElementById('back-button').addEventListener('click', function() {
+            const referrer = document.referrer;
+            
+            if (referrer.includes('categories.html') || referrer.includes('category')) {
+                window.location.href = 'categories.html';
+            } else if (referrer.includes('index.html') || referrer === '') {
+                window.location.href = 'index.html';
+            } else {
+                window.history.back();
+            }
+        });
+
+        // Navigation
+        document.getElementById('articles-link-detail').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'categories.html';
+        });
+
+        document.getElementById('home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+
+        // Vérifier l'ID de l'article dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+        
+        if (articleId) {
+            console.log(`🔍 Chargement de l'article ID: ${articleId}`);
+            loadArticleById(articleId);
+        } else if (articlesData.length > 0) {
+            // Fallback: charger le premier article
+            console.log('ℹ️ Aucun ID spécifié, chargement du premier article');
+            loadArticleById(articlesData[0].id);
+            
+            // Mettre à jour l'URL sans recharger
+            history.replaceState({}, '', `?id=${articlesData[0].id}`);
+        }
+    });
+    
+    // Exposer les fonctions globales
+    window.loadArticleDetailById = loadArticleById;
+    window.downloadArticle = downloadArticle;
+    window.shareByEmail = shareByEmail;
+    window.toggleArticleFavorite = toggleArticleFavorite;
+    
+    
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
